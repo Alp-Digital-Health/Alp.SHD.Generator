@@ -1,6 +1,6 @@
 # Alp Synthetic Health Data Generator
 
-**Generate realistic synthetic health/patient data, compare generative models side by side, and measure the trade-off between fidelity and privacy — in an interactive R/Shiny app.**
+**Generate realistic synthetic patient data, compare generative models side by side, and measure the trade-off between fidelity and privacy — in an interactive R/Shiny app.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Language: R](https://img.shields.io/badge/Language-R-276DC3.svg)
@@ -12,7 +12,7 @@ This is a teaching and quality-check tool for synthetic data. You give it a data
 
 ## Try it / run it
 
-**Live demo (sample data only):** _add your shinyapps.io URL here after deploying_
+**Live demo (sample data only):** [https://34wa4k-abraham.shinyapps.io/synthetic-health-demo/](https://34wa4k-abraham.shinyapps.io/synthetic-health-demo/)
 
 > ⚠️ **The online demo runs on built-in synthetic sample data only and disables file upload.** It is hosted on a shared public server and is **not** a private or secure environment. **Do not upload or enter real or patient data into the demo.** To work with your own data, download the app and run it on your own machine (below), where your data never leaves your computer.
 

@@ -1,6 +1,6 @@
 # Alp Synthetic Health Data Generator
 
-**Generate realistic synthetic patient data, compare generative models side by side, and measure the trade-off between fidelity and privacy — in an interactive R/Shiny app.**
+**Generate realistic synthetic health/patient data, compare generative models side by side, and measure the trade-off between fidelity and privacy — in an interactive R/Shiny app.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 ![Language: R](https://img.shields.io/badge/Language-R-276DC3.svg)

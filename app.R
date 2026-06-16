@@ -52,7 +52,6 @@ model_label <- function(key) names(MODEL_CHOICES)[match(key, MODEL_CHOICES)]
 # ---- Fidelity ---------------------------------------------------------------
 fidelity_frac <- list("1 - Low" = 0.20, "2 - Moderate" = 0.50,
                       "3 - High" = 0.80, "4 - Very high" = 1.00)
-                      "3 - High" = 0.80, "4 - Very high" = 1.00)
 NOISE_MULT <- 2.5
 apply_fidelity <- function(synth, real, f, cont_vars, cat_vars) {
   out <- synth

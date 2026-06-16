@@ -1,7 +1,7 @@
 # =============================================================================
 # Synthetic Health Data Generator  -  PUBLIC DEMO BUILD  (for shinyapps.io)
 #
-# This is a DEMO-ONLY variant of the full application:
+# There is a DEMO-ONLY variant of the full application:
 #   * Runs ONLY on built-in synthetic sample data (file upload is removed).
 #   * Shows a mandatory privacy warning on load + a persistent banner.
 #   * Directs users to DOWNLOAD the full app and run it on their own machine.
@@ -52,6 +52,7 @@ model_label <- function(key) names(MODEL_CHOICES)[match(key, MODEL_CHOICES)]
 # ---- Fidelity ---------------------------------------------------------------
 fidelity_frac <- list("1 - Low" = 0.20, "2 - Moderate" = 0.50,
                       "3 - High" = 0.80, "4 - Very high" = 1.00)
+                      "3 - High" = 0.80, "4 - Very high" = 1.00)
 NOISE_MULT <- 2.5
 apply_fidelity <- function(synth, real, f, cont_vars, cat_vars) {
   out <- synth
@@ -60,11 +61,16 @@ apply_fidelity <- function(synth, real, f, cont_vars, cat_vars) {
     out[[v]] <- synth[[v]] + (1 - f) * NOISE_MULT * s * rnorm(nrow(synth))
   }
   for (v in cat_vars) {
+    lv   <- levels(factor(real[[v]]))
     flip <- runif(nrow(synth)) > f
     if (any(flip)) {
       vals <- as.character(synth[[v]])
-      vals[flip] <- as.character(sample(real[[v]], sum(flip), replace = TRUE))
-      out[[v]] <- factor(vals, levels = levels(factor(real[[v]])))
+      # distortion target: inverse-frequency weights push rare levels up and
+      # common levels down, so low fidelity visibly skews the proportions.
+      p    <- prop.table(table(factor(real[[v]], levels = lv)))
+      w    <- as.numeric(1 / (p + 1e-6)); w <- w / sum(w)
+      vals[flip] <- sample(lv, sum(flip), replace = TRUE, prob = w)
+      out[[v]] <- factor(vals, levels = lv)
     }
   }
   out
